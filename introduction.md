@@ -1,1 +1,5 @@
-#Introduction
+---
+layout: default
+---
+
+# Introduction
