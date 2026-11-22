@@ -1,6 +1,6 @@
 theme: jekyll-theme-minimal
-title: ADA Template Website
-description: A template website for ADA
+title: Investigating the structure of COVID-19 severity: A donor-level view of single-cell RNA-sequencing data 
+description: The original study relies on the progression from asymptomatic to mild, moderate, severe and critical COVID-19 infection based on clinical judgements for many of their analyses. It isn’t obvious that RNA-sequencing data follows the same structure. We will test this assumption using donors, rather than individual cells, as the unit of analysis. Donor profiles can be constructed from RNA-sequencing data by pseudobulking each donor’s cells within defined cell types for donor-cell type pairs of interest. We will ask whether clinically determined severity emerges from these profiles and whether severity is better described as a continuous gradient or as discrete stages. The story we want to tell is where clinically determined severity and RNA-sequencing data agree, where they diverge, and why this matters for how severity is defined. 
 show_downloads: True
 navigation:
   - title: Home
