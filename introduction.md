@@ -23,3 +23,45 @@ This website will first walk you through how donor profiles are constructed and 
     </a>
 
 </div>
+
+
+
+
+
+# Exploring the data and preprocessing
+
+Before diving into our aims, we need first to establish how versatile our data collection is. For this reason we explore the data and perform some preprocessing and filtering in order to keep only those we are interested in.
+
+## Exploration
+We assess the data in order to determine if the gender, age interval or the collection site influence  the Covid-19 status and severity. Our result could be summarized as follows: 
+
+![Sample distribution in relation to gender, age interval and site of collection](images/Covid_status.png)
+
+In the first histogram we can see that the gender is relatively balanced in the data set including the distribution of the groups studied (e.g. Healthy, LPS, etc.). 
+
+The second histogram shows the sample distribution across ages. We can clearly see that the healthy donors were in the younger age groups with LPS group present only in the first two age groups (20 to 39). From age 80, only Covid cases are present.
+
+The third histogram displays the unequal distribution in the number of samples between the regions. In London, there is roughly 6 time less samples than in Camberage and 7 times less samples than in Newcastel. We can immediately see that the majority of samples come from the Covid-19 patient in all the 3 sites. However, Newcastel is the only one where the two control samples were collected (Non-covid and LPS).
+
+
+![Severity stages representation across the gender, age interval and site of collection](images/Stage_severity_according_age_gendre_region.png)
+
+The gender histogram shows that the major differences are in the distribution of Mild and Moderate cases. Namely, in female group there are two times more Mild cases, while the male group contains three times more of Moderate cases.
+
+The age histogram shows an unequal distribution of cases according to the disease severity. In younger age (20 to 39) and old groups (80-99) there are no Critical cases.
+
+The collection sites contribute differently in terms of disease severity. As observed previously, London site took into account only the Covid-19 manifested patients, hence the total lack of the Asymptomatic group. The Cambridge site has the equally represented all disease stages. 
+
+![Exploring cell-type composition across groups and disease severity](images/Mean_cell_type_for_all_stages.png)
+
+The 10 most abundant cell types account for approximately 75% of the mean cell-type composition across all groups and disease severities.
+
+Differences in cell-type composition can be observed between groups. The LPS group shows a higher proportion of naive B cells, while CD16+ NK cells are more abundant in both the LPS and non-COVID-19 groups.
+
+A particularly interesting pattern emerges among the less frequently detected cell types. Cell types present in 20% or fewer of the samples are exclusively observed in donors with critical COVID-19. Although detected in relatively few samples, these populations collectively account for more than 5% of the mean cell-type composition in this group.
+
+These rare populations include B-cell malignancies, T helper 17 (Th17) cells and cells associated with the megakaryocyte lineage.
+
+
+
+## Prepossessing
