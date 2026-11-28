@@ -36,6 +36,7 @@ Before diving into our aims, we need first to establish how versatile our data c
 We assess the data in order to determine if the gender, age interval or the collection site influence  the Covid-19 status and severity. Our result could be summarized as follows: 
 
 ![Sample distribution in relation to gender, age interval and site of collection](images/Covid_status.png)
+*Figure 1: Sample distribution in relation to gender, age interval and site of collection*
 
 In the first histogram we can see that the gender is relatively balanced in the data set including the distribution of the groups studied (e.g. Healthy, LPS, etc.). 
 
@@ -45,6 +46,7 @@ The third histogram displays the unequal distribution in the number of samples b
 
 
 ![Severity stages representation across the gender, age interval and site of collection](images/Stage_severity_according_age_gendre_region.png)
+*Figure 2: Severity stages representation across the gender, age interval and site of collection*
 
 The gender histogram shows that the major differences are in the distribution of Mild and Moderate cases. Namely, in female group there are two times more Mild cases, while the male group contains three times more of Moderate cases.
 
@@ -53,6 +55,7 @@ The age histogram shows an unequal distribution of cases according to the diseas
 The collection sites contribute differently in terms of disease severity. As observed previously, London site took into account only the Covid-19 manifested patients, hence the total lack of the Asymptomatic group. The Cambridge site has the equally represented all disease stages. 
 
 ![Exploring cell-type composition across groups and disease severity](images/Mean_cell_type_for_all_stages.png)
+*Figure 3: Cell-type composition across groups and disease severities.*
 
 The 10 most abundant cell types account for approximately 75% of the mean cell-type composition across all groups and disease severities.
 
@@ -65,3 +68,28 @@ These rare populations include B-cell malignancies, T helper 17 (Th17) cells and
 
 
 ## Prepossessing
+
+To ensure data quality and reliable cell-type representation across samples, some filtering steps were applied. 
+We start the preprocessing mechanism by filtering the cells that have not enough expressed genes (defined number: less than 200 genes expressed). In this way, only samples of good quality and enough information are kept for reliable downstream analyses. Then, cells with too many expressed genes (defined number: more than 5000 genes) were removed because high reads number can be due to misidentifying two cells as one or abnormal profiles. Finally, we remove the cells with more than 10% of mitochondrial counts, which is the standard parameter for damaged cells. 
+
+The filtering results in only 0.2% cell loss: initial number of cells is 647366 and after filtering goes down to 646101. This suggests that the dataset already had good cell-level quality as determined by our QC (quality control) criteria.
+
+
+![Filtering threasold selection](images/Filtering_threasholds.png)
+*Figure 4:  Effect of different minimum cell thresholds on data retention.*
+
+The second filtering was applied to ensure that enough cells of the same identity are present in each sample. Here we introduce the term “sample-cell type pairs” which defines the number of cells per cell type in the given sample. In order to determine the appropriate minimum threshold to use, we analysed how different thresholds affect the percentage of sample-cell type pairs remain after applying the filtering with this specific threshold.
+
+As shown in Figure 4, the fraction of remaining sample-cell type pairs decreases fast for thresholds below 10 cells, after which the slope is less steep. On the other hand, the total number of retained cells remains much higher regardless of the threshold chosen (orange line). According to this graph the minimum threshold of 10 cells per pairs was selected. At this threshold 62.8% of the sample-cell pairs and 98.9% of individual cells remain. This filter ensures the good cell type representation per each sample. 
+
+
+![Distribution of the group and the severity after the filtering parts](images/Distribution_of_remaining_groups_and_severitiy.png)
+*Figure 5: Distibution of the remaining data across the groups and severity*
+
+In this graph we address the question if the last filter did not result is imbalanced information loss. Here are displayed the remaining data distributed into study groups as well as the disease severity. 
+
+In the group case, the LPS group is the one that lost the most data points (around 48%).  The three other groups have all kept around 60% of they data samples. 
+For the severity histogram, the two stages that are the most affected are: Asymptomatic with 57.05% and Critical with 60.28% data conserved.
+After these filtering steps, the genes detected in fewer than three cells across the remaining dataset were excluded. This results in removing 688 genes (2.78%), so 24049 remain.
+
+The remaining cells were then grouped by sample, donor and cell type. Raw gene counts were summed within each sample–cell type pair to generate sample-level expression profiles. These aggregated counts were subsequently normalised to 10,000 counts per profile and log1p-transformed to obtain comparable expression profiles across samples.
